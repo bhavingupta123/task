@@ -35,7 +35,7 @@ app.get('/',(req,res)=>{
 
 app.get('/admin',(req,res)=>{
 
-    res.render("admin_login");
+  res.render('admin_login',{verify:-1});
 });
 
 app.post('/admin',(req,res)=>{
@@ -56,10 +56,12 @@ app.post('/admin',(req,res)=>{
           verify=1;
           console.log("found admin")
           
-          res.redirect('/')
+          res.render('admin_login',{verify:1});
         }
         else
         {
+
+          res.render('admin_login',{verify:0});
           console.log("not found")
         }
         
@@ -70,7 +72,7 @@ app.post('/admin',(req,res)=>{
 
 app.get('/user',(req,res)=>{
 
-    res.render("user_login");
+  res.render('user_login',{verify:-1});
 })
 
 app.post('/user',(req,res)=>{
@@ -89,11 +91,12 @@ app.post('/user',(req,res)=>{
         {   
           verify=1;
           console.log("found user");
-          res.redirect('/');
+          res.render('user_login',{verify:1});
         }
         else
         {
           console.log("not found");
+          res.render('user_login',{verify:0});
           console.log(userId);
           console.log(password);
         }
